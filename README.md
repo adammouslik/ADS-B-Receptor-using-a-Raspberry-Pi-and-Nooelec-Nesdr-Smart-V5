@@ -33,7 +33,6 @@ SOFTWARE REQUIREMENTS
 INSTALLATION AND CONFIGURATION
 --------------------------------------------------
 
-
 0. Prepare the Raspberry Pi:
    - Download and install the latest Raspberry Pi OS (or your preferred Linux distribution) onto a microSD card using tools like **Raspberry Pi Imager** or **balenaEtcher**.
    - Insert the microSD card into the Raspberry Pi.
@@ -42,72 +41,97 @@ INSTALLATION AND CONFIGURATION
    - Optionally, set up WiFi credentials before first boot by editing the `wpa_supplicant.conf` file in the boot partition.
    - Boot the Raspberry Pi and ensure it has internet access.
 
-   
 1. Connect to Raspberry Pi via SSH:
-   ssh pi@raspberrypi.local
-   (Default password: raspberry)
+```bash
+ssh pi@raspberrypi.local
+```
+(Default password: raspberry)
 
-   If not working, find the IP with:
-     arp -a
-     ssh pi@<raspberry_ip>
+If not working, find the IP with:
+```bash
+arp -a
+ssh pi@<raspberry_ip>
+```
 
 2. Update the system:
-   sudo apt update && sudo apt upgrade -y
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
 3. Install dependencies:
-   sudo apt install git cmake build-essential libusb-1.0-0-dev -y
+```bash
+sudo apt install git cmake build-essential libusb-1.0-0-dev -y
+```
 
 4. Install librtlsdr:
-   git clone https://github.com/steve-m/librtlsdr.git
-   cd librtlsdr
-   mkdir build && cd build
-   cmake ..
-   make
-   sudo make install
-   sudo ldconfig
-   rtl_test
+```bash
+git clone https://github.com/steve-m/librtlsdr.git
+cd librtlsdr
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig
+rtl_test
+```
 
-   (Expected output: Found 1 device(s): 0: Nooelec NESDR SMArt v5)
+(Expected output: `Found 1 device(s): 0: Nooelec NESDR SMArt v5`)
 
 5. Install dump1090:
-   cd ~
-   git clone https://github.com/antirez/dump1090.git
-   cd dump1090
-   make
+```bash
+cd ~
+git clone https://github.com/antirez/dump1090.git
+cd dump1090
+make
+```
 
 6. Run dump1090:
-   ./dump1090 --interactive         # See aircraft in the terminal
-   ./dump1090 --interactive --net   # Web view: http://<raspberry_ip>:8080
+```bash
+./dump1090 --interactive         # See aircraft in the terminal
+./dump1090 --interactive --net   # Web view: http://<raspberry_ip>:8080
+```
 
 --------------------------------------------------
 TROUBLESHOOTING
 --------------------------------------------------
 
 Error: 
-  'Kernel driver is active, or device is claimed by second instance of librtlsdr. 
-   (dvb_usb_rtl28xxu) 
-   usb_claim_interface error -6
-   Error opening the RTLSDR device: Device or resource busy'
+```
+Kernel driver is active, or device is claimed by second instance of librtlsdr. 
+(dvb_usb_rtl28xxu) 
+usb_claim_interface error -6
+Error opening the RTLSDR device: Device or resource busy
+```
 
 Solution: disable the DVB driver
-   sudo nano /etc/modprobe.d/blacklist-rtl.conf
+```bash
+sudo nano /etc/modprobe.d/blacklist-rtl.conf
+```
 
-   Add the following lines:
-     blacklist dvb_usb_rtl28xxu
-     blacklist rtl2832
-     blacklist rtl2830
+Add the following lines:
+```bash
+blacklist dvb_usb_rtl28xxu
+blacklist rtl2832
+blacklist rtl2830
+```
 
-   Save (Ctrl+O, Enter, Ctrl+X) and run:
-     sudo update-initramfs -u
+Save (Ctrl+O, Enter, Ctrl+X) and run:
+```bash
+sudo update-initramfs -u
+```
 
 --------------------------------------------------
 USAGE
 --------------------------------------------------
 - To view detected aircraft in the terminal:
-  ./dump1090 --interactive
+```bash
+./dump1090 --interactive
+```
 
 - To view them in your web browser:
-  http://<raspberry_ip>:8080
+```bash
+http://<raspberry_ip>:8080
+```
 
 --------------------------------------------------
 ACKNOWLEDGEMENTS
@@ -146,4 +170,3 @@ AUTHOR
 --------------------------------------------------
 Project created by: Adam Mouslik El Moudakkar
 Date: 2025
-
