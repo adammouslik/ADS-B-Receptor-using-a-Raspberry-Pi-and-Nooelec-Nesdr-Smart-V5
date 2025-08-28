@@ -10,6 +10,8 @@ ADS-B has become a key component of modern air traffic management, as it provide
 
 This project demonstrates how to install and configure an ADS-B receiver using a Raspberry Pi 2B connected to a Nooelec NESDR SMArt v5 dongle. The setup was done on Linux Fedora, but the instructions apply to other Debian-based distributions as well (e.g., Raspbian).
 
+![Cool ADS-B image](cool_adsb_image.jpg)
+
 --------------------------------------------------
 HARDWARE REQUIREMENTS
 --------------------------------------------------
