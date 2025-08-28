@@ -31,6 +31,16 @@ SOFTWARE REQUIREMENTS
 INSTALLATION AND CONFIGURATION
 --------------------------------------------------
 
+
+0. Prepare the Raspberry Pi:
+   - Download and install the latest Raspberry Pi OS (or your preferred Linux distribution) onto a microSD card using tools like **Raspberry Pi Imager** or **balenaEtcher**.
+   - Insert the microSD card into the Raspberry Pi.
+   - Connect the Raspberry Pi to power, network (Ethernet or WiFi), and peripherals (keyboard, mouse, monitor) for the initial setup.
+   - Enable SSH (can be done from Raspberry Pi Imager or by creating an empty file named `ssh` in the boot partition of the microSD).
+   - Optionally, set up WiFi credentials before first boot by editing the `wpa_supplicant.conf` file in the boot partition.
+   - Boot the Raspberry Pi and ensure it has internet access.
+
+   
 1. Connect to Raspberry Pi via SSH:
    ssh pi@raspberrypi.local
    (Default password: raspberry)
